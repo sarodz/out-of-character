@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
-'use strict'
-
 import fs from 'fs'
 import { dim, blue } from 'colorette'
-import detectFile from './detect-file'
-import { replace } from '../src/index'
-import getFiles from './getFiles'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+import detectFile from './detect-file.js'
+import { replace } from '../src/index.js'
+import getFiles from './getFiles.js'
+
+// Get the directory name of the current module
+const __dirname = dirname(fileURLToPath(import.meta.url))
 let args = process.argv.slice(2)
 
 const modes = {
