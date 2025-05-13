@@ -2,6 +2,7 @@
   "packages": {
     ".": {
       "changelog-path": "changelog.md",
+      "include-v-in-tag": true,
       "release-type": "node",
       "bump-minor-pre-major": false,
       "bump-patch-for-minor-pre-major": false,
