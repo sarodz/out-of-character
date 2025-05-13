@@ -1,4 +1,4 @@
 - id: out-of-character
   name: Out of Character
-  entry: out-of-character
+  entry: node builds/out-of-character.js
   language: node
