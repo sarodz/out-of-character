@@ -2,14 +2,14 @@
 
 import fs from 'fs'
 import { dim, blue } from 'colorette'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+// import { fileURLToPath } from 'url'
+// import { dirname } from 'path'
 import detectFile from './detect-file.js'
 import { replace } from '../src/index.js'
 import getFiles from './getFiles.js'
 
 // Get the directory name of the current module
-const __dirname = dirname(fileURLToPath(import.meta.url))
+// const __dirname = dirname(fileURLToPath(import.meta.url))
 let args = process.argv.slice(2)
 
 const modes = {
@@ -23,7 +23,13 @@ const modes = {
 let mode = 'detect'
 let pathStr = ''
 args = args.filter((arg) => {
-  if (modes.hasOwnProperty(arg) === true) {
+  if (arg.includes('=')) {
+    const [key, value] = arg.split('=')
+    if (modes.hasOwnProperty(key)) {
+      modes[key] = value
+      return false
+    }
+  } else if (modes.hasOwnProperty(arg) === true) {
     // cast to boolean
     if (modes[arg] === 'false') {
       modes[arg] = false
@@ -33,6 +39,7 @@ args = args.filter((arg) => {
   }
   return arg //is truthy
 })
+
 // Take the first non-flag arg as path
 pathStr = args[0]
 
