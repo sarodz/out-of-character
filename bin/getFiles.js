@@ -10,7 +10,7 @@ import path from 'path'
 const getFiles = function (pathStr, recursive = false) {
   const files = []
 
-  const getDirectory = function (currentPath, deep = false) {
+  const getDirectory = function (currentPath) {
     // Check if path exists
     if (fs.existsSync(currentPath)) {
       // Check if it's a directory
@@ -20,7 +20,7 @@ const getFiles = function (pathStr, recursive = false) {
           const filePath = path.join(currentPath, file)
           if (fs.lstatSync(filePath).isDirectory()) {
             // Recursively process subdirectories
-            if (deep) {
+            if (recursive) {
               getDirectory(filePath)
             }
           } else {
